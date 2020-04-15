@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use App\Http\Requests\CreateTaskRequest;
 
 class TasksController extends Controller
 {
@@ -35,13 +36,15 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTaskRequest $request)
     {
         $data = $request->all();
 
         Task::create([
             'name' => $data['name'],
         ]);
+
+        session()->flash('success', 'Task successfully created');
 
         return redirect('/');
     }
@@ -79,7 +82,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateTaskRequest $request, $id)
     {
 
         $info = request()->all();
@@ -89,6 +92,8 @@ class TasksController extends Controller
         $datas->name = $info['name'];
 
         $datas->save();
+
+        session()->flash('success', "Task successfully updated");
 
         return redirect('/');
     }
@@ -104,6 +109,8 @@ class TasksController extends Controller
         $datas = Task::find($id);
 
         $datas->delete();
+
+        session()->flash('success', 'Task successfully deleted');
 
         return redirect('/');
     }

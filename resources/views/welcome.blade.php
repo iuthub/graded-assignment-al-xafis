@@ -1,8 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-
-
+		@if(session()->has('success'))
+			<div class="container">
+				<div class="text-center">
+					<div class="alert alert-success">
+					<h6>{{session()->get('success')}}</h6>
+					</div>
+				</div>
+			</div>
+		@endif
+		@if($errors->any())
+			<div class="container">
+				<div class="alert alert-danger">
+					<ul class="list-group text-center">
+						@foreach($errors->all() as $error)
+							<li class="list-group-item">
+								{{ $error }}
+							</li>
+						@endforeach
+					</ul>
+				</div>
+			</div>
+		@endif
        <form action="store-tasks" method="POST">
        	@csrf
             <div id="myDIV" class="header">
@@ -11,6 +31,7 @@
               <button type="submit" class="addBtn">Add</button>
             </div>
         </form>
+        
         <ul id="myUL">
         	@foreach($datas as $data)
           <li>
