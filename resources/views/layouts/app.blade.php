@@ -11,6 +11,7 @@
         <script src="https://kit.fontawesome.com/8500f75e5b.js" crossorigin="anonymous"></script>
 
         <!-- Styles -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"  crossorigin="anonymous">
         <style>
             /* Include the padding and border in an element's total width and height */
             * {
@@ -111,6 +112,28 @@
             .addBtn:hover {
               background-color: #bbb;
             }
+
+            .iccon {
+              background:none;
+              border:none;
+              color:grey;
+              cursor:pointer;
+            }
+
+            .iccon:focus{
+              outline:none;
+            }
+
+            .iccon:hover{
+              color:blue;
+            }
+
+            .iccon:active{
+              color:red;
+            }
+
+
+
         </style>
     </head>
     <body>

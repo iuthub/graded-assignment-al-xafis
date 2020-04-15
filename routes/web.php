@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TasksController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+Route::get('/', 'TasksController@index');
+
+
+
+Route::post('store-tasks', 'TasksController@store');
+
+Route::get('{id}/edit', 'TasksController@edit');
+
+Route::post('{id}/update', 'TasksController@update');
+
+Route::get('/{id}/delete', 'TasksController@destroy');
+
+
+// Route::get('/tasks/create', 'TasksController@create');
+
+// Route::post('/tasks/store', 'TasksController@store');
