@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Task;
 use App\Http\Requests\CreateTaskRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TasksController extends Controller
 {
@@ -16,6 +17,12 @@ class TasksController extends Controller
     public function index()
     {
         $datas = Task::all();
+
+        if(Auth::check()){
+
+            $userdatas = Task::where('user_id', Auth::user()->id)->get();
+            return view('welcome')->with('datas', $datas)->with('userdatas', $userdatas);
+        }
 
         return view('welcome')->with('datas', $datas);
     }
@@ -39,10 +46,12 @@ class TasksController extends Controller
     public function store(CreateTaskRequest $request)
     {
         $data = $request->all();
-
-        Task::create([
+        $user = Auth::user();
+        $task = new Task([
             'name' => $data['name'],
         ]);
+
+        $user->tasks()->save($task);
 
         session()->flash('success', 'Task successfully created');
 

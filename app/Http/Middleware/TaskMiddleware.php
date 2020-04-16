@@ -16,7 +16,7 @@ class TaskMiddleware
     public function handle($request, Closure $next)
     {
         if(!Auth::user()){
-            session()->flash('middlewared', 'Please Login to Add\Update\delete tasks (middleware)');
+            session()->flash('middlewared', 'Please Login to Add\Update\Delete the task that BELONGS to you (middleware)');
             return redirect('/');
         }
 

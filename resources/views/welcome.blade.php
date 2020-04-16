@@ -54,26 +54,39 @@
         </form>
 
 
-           
+         @if(!Auth::check())  
         <ul id="myUL">
         	@foreach($datas as $data)
-          <li>
-            <div class="task">
-                {{ $data->name }}
-            </div>
-            <div class="action">
-                <a href="{{$data->id}}/edit"><i class="fa fa-edit"></i></a>
-            </div>
-{{--             <div class="action">
-            	<form action="{{$data->id}}/delete" method="GET">
-                <button type="submit" class="iccon"><i class="fa fa-trash-alt"></i></button>
-                </form> 
-            </div> --}}
-            <div class="action">
-            	<a href="{{$data->id}}/delete"><i class="fa fa-trash-alt"></i></a>
-            </div>
-          </li>
-			@endforeach
+            <li>
+              <div class="task">
+                  {{ $data->name }}
+              </div>
+              <div class="action">
+                  <a href="{{$data->id}}/edit"><i class="fa fa-edit"></i></a>
+              </div>
+              <div class="action">
+              	<a href="{{$data->id}}/delete"><i class="fa fa-trash-alt"></i></a>
+              </div>
+            </li>
+          @endforeach
         </ul>
+        @endif
+        @if(Auth::check())
+        <ul id="myUL">
+          @foreach($userdatas as $userdata)
+            <li>
+              <div class="task">
+                  {{ $userdata->name }}
+              </div>
+              <div class="action">
+                  <a href="{{$userdata->id}}/edit"><i class="fa fa-edit"></i></a>
+              </div>
+              <div class="action">
+                <a href="{{$userdata->id}}/delete"><i class="fa fa-trash-alt"></i></a>
+              </div>
+            </li>
+          @endforeach
+        </ul>
+        @endif
 
 @endsection
