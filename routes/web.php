@@ -22,15 +22,24 @@ Route::get('/', 'TasksController@index');
 
 
 
-Route::post('store-tasks', 'TasksController@store');
+Route::post('store-tasks', ['uses' => 'TasksController@store', 'middleware' => 'task']);
 
-Route::get('{id}/edit', 'TasksController@edit');
+Route::get('{id}/edit', ['uses' => 'TasksController@edit', 'middleware' => 'task']);
 
 Route::post('{id}/update', 'TasksController@update');
 
-Route::get('/{id}/delete', 'TasksController@destroy');
+Route::get('/{id}/delete', ['uses' => 'TasksController@destroy', 'middleware' => 'task']);
+
+
+
+
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+// Route::get('/testmiddleware', ['middleware'=>'task', function(){
+
+
+// }]);
 
 
 // Route::get('/tasks/create', 'TasksController@create');

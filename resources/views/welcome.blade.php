@@ -1,6 +1,15 @@
 @extends('layouts.appm')
 
 @section('content')
+		@if(session()->has('middlewared'))
+			<div class="container">
+				<div class="text-center">
+					<div class="alert alert-warning">
+					<h6>{{session()->get('middlewared')}}</h6>
+					</div>
+				</div>
+			</div>
+		@endif
 		@if(session()->has('success'))
 			<div class="container">
 				<div class="text-center">
