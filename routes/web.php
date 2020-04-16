@@ -30,7 +30,21 @@ Route::post('{id}/update', 'TasksController@update');
 
 Route::get('/{id}/delete', 'TasksController@destroy');
 
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 
 // Route::get('/tasks/create', 'TasksController@create');
 
 // Route::post('/tasks/store', 'TasksController@store');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

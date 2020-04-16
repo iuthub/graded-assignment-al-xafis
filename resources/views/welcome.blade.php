@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appm')
 
 @section('content')
 		@if(session()->has('success'))
@@ -23,6 +23,18 @@
 				</div>
 			</div>
 		@endif
+		        @if(!Auth::check())
+            	<a href="/register"><button type="button" class="addBtn3 float-right mx-3 my-3">Register</button></a>
+            	<a href="/login"><button type="button" class="addBtn2 float-right my-3">Login</button></a>
+            	@else
+				<form action="{{ route('logout') }}" method="POST">
+                     @csrf
+                <button class="addBtn2 float-right mx-5 my-3">Logout</button>
+                </form>
+                <div class="float-left mx-5 my-3 ">
+                	Logged in: {{Auth::user()->name}}
+                </div>
+            	@endif
        <form action="store-tasks" method="POST">
        	@csrf
             <div id="myDIV" class="header">
@@ -31,7 +43,9 @@
               <button type="submit" class="addBtn">Add</button>
             </div>
         </form>
-        
+
+
+           
         <ul id="myUL">
         	@foreach($datas as $data)
           <li>
